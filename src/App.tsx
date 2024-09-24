@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { getTodos, type Todo } from "./test.ts";
 
+type ToggleTodo = Omit<Todo, "title">;
+
 function App() {
   const [todoList, setTodoList] = useState<Todo[]>([]);
   useEffect(() => {
@@ -40,7 +42,7 @@ function App() {
     setTodoList((prev) => prev.filter((todo) => todo.id !== id));
   };
 
-  const handleToggleTodo = async ({ id, completed }: Omit<Todo, "title">) => {
+  const handleToggleTodo = async ({ id, completed }: ToggleTodo) => {
     await fetch(`http://localhost:4000/todos/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
