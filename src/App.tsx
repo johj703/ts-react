@@ -33,6 +33,13 @@ function App() {
     setTitle("");
   };
 
+  const handleDeleteTodo = async (id: Todo["id"]) => {
+    await fetch(`http://localhost:4000/todos/${id}`, {
+      method: "DELETE",
+    });
+    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
   return (
     <>
       <TodoList todoList={todoList} />
@@ -54,15 +61,17 @@ function TodoList({ todoList }: TodoListProps) {
   );
 }
 
-type TodoItemProps = Todo;
-function TodoItem({ id, title, completed }: TodoItemProps) {
+type TodoItemProps = Todo & {
+  onDeleteClick: (id: Todo["id"]) => void;
+};
+function TodoItem({ id, title, completed, onDeleteClick }: TodoItemProps) {
   return (
     <>
       <div>
         <div>id: {id}</div>
         <div>title: {title}</div>
         <div>completed: {`${completed}`}</div>
-        <button>삭제</button>
+        <button onClick={() => onDeleteClick(id)}>삭제</button>
       </div>
       ---
     </>
