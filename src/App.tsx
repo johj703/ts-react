@@ -10,9 +10,23 @@ function App() {
 }
 
 function TodoList({ todoList }: { todoList: Todo[] }) {
-  return <></>;
+  return (
+    <>
+      {todoList.map((todo) => {
+        <TodoItem {...todo} />;
+      })}
+    </>
+  );
 }
 
-function TodoItem() {}
+function TodoItem({ id, title, completed }: Todo) {
+  return (
+    <div>
+      <div>{id}</div>
+      <div>{title}</div>
+      <div>{completed}</div>
+    </div>
+  );
+}
 
 export default App;
