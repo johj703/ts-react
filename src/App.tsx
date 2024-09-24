@@ -20,6 +20,8 @@ function App() {
       title,
       completed: false,
     };
+
+    fetch("http://localhost:4000/posts");
   };
 
   return (
