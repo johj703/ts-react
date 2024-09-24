@@ -4,7 +4,8 @@ export type Todo = {
   completed: boolean;
 };
 
-export type Paginate = {
+export type Paginate<T> = {
+  data: T[];
   first: number;
   item: number;
   last: number;
@@ -15,7 +16,7 @@ export type Paginate = {
 
 export async function getTodos() {
   const res = await fetch("http://localhost:4000/todos");
-  const data: Todo[] = await res.json();
+  const data: Paginate<Todo> = await res.json();
 
   return data;
 }
