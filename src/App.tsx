@@ -30,6 +30,7 @@ function App() {
       body: JSON.stringify(newTodo),
     });
     setTodoList((prev) => [...prev, newTodo]);
+    setTitle("");
   };
 
   return (
@@ -56,11 +57,15 @@ function TodoList({ todoList }: TodoListProps) {
 type TodoItemProps = Todo;
 function TodoItem({ id, title, completed }: TodoItemProps) {
   return (
-    <div>
-      <div>id: {id}</div>
-      <div>title: {title}</div>
-      <div>completed: {`${completed}`}</div>
-    </div>
+    <>
+      <div>
+        <div>id: {id}</div>
+        <div>title: {title}</div>
+        <div>completed: {`${completed}`}</div>
+        <button>삭제</button>
+      </div>
+      ---
+    </>
   );
 }
 
