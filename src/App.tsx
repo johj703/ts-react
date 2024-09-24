@@ -40,6 +40,15 @@ function App() {
     setTodoList((prev) => prev.filter((todo) => todo.id !== id));
   };
 
+  const handleToggleTodo = async ({ id, completed }: Omit<Todo, "title">) => {
+    await fetch(`http://localhost:4000/todos/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        completed,
+      }),
+    });
+  };
+
   return (
     <>
       <TodoList todoList={todoList} onDeleteClick={handleDeleteTodo} />
