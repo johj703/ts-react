@@ -8,7 +8,27 @@ function App() {
     getTodos().then((data) => setTodoList(data));
   }, []);
 
-  return <TodoList todoList={todoList} />;
+  const [title, setTitle] = useState("");
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const handleAddTodo = () => {
+    const newTodo: Todo = {
+      id: crypto.randomUUID(),
+      title,
+      completed: false,
+    };
+  };
+
+  return (
+    <>
+      <TodoList todoList={todoList} />
+      <input type="text" value={title} onChange={handleTitleChange} />
+      <button>등록</button>
+    </>
+  );
 }
 
 type TodoListProps = { todoList: Todo[] };
@@ -17,7 +37,7 @@ function TodoList({ todoList }: TodoListProps) {
   return (
     <>
       {todoList.map((todo) => {
-        <TodoItem {...todo} />;
+        <TodoItem key={todo.id} {...todo} />;
       })}
     </>
   );
