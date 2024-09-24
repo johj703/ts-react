@@ -21,7 +21,7 @@ function App() {
       completed: false,
     };
 
-    await fetch("http://localhost:4000/posts", {
+    await fetch("http://localhost:4000/todos", {
       method: "POST",
       body: JSON.stringify(newTodo),
     });
