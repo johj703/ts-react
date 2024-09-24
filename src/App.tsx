@@ -14,21 +14,25 @@ function App() {
     setTitle(e.target.value);
   };
 
-  const handleAddTodo = () => {
+  const handleAddTodo = async () => {
     const newTodo: Todo = {
       id: crypto.randomUUID(),
       title,
       completed: false,
     };
 
-    fetch("http://localhost:4000/posts");
+    await fetch("http://localhost:4000/posts", {
+      method: "POST",
+      body: JSON.stringify(newTodo),
+    });
+    setTodoList((prev) => [...prev, newTodo]);
   };
 
   return (
     <>
       <TodoList todoList={todoList} />
       <input type="text" value={title} onChange={handleTitleChange} />
-      <button>등록</button>
+      <button onClick={handleAddTodo}>등록</button>
     </>
   );
 }
