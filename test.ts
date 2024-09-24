@@ -1,11 +1,14 @@
-let varible: number = 1;
+type Todo = {
+  id: string;
+  title: string;
+  completed: boolean;
+};
 
-function add(a: number, b: number): number {
-  return a + b;
+async function getTodos(): Promise<Todo[]> {
+  const res = await fetch("http://localhost:4000/todos");
+  const data = await res.json();
+
+  return data;
 }
 
-function add2({ a, b }: { a: number; b: number }): number {
-  return a + b;
-}
-
-add2({ a: 1, b: 2 });
+getTodos().then(console.log);
