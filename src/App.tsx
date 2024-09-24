@@ -1,7 +1,13 @@
+import { useEffect, useState } from "react";
 import "./App.css";
-import { type Todo } from "./test.ts";
+import { getTodos, type Todo } from "./test.ts";
 
 function App() {
+  const { todoList, setTodoList } = useState<Todo[]>();
+  useEffect(() => {
+    getTodos().then((data) => setTodoList(data));
+  }, []);
+
   return (
     <>
       <TodoList todoList={[]} />
