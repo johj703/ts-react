@@ -3,16 +3,12 @@ import "./App.css";
 import { getTodos, type Todo } from "./test.ts";
 
 function App() {
-  const { todoList, setTodoList } = useState<Todo[]>();
+  const [todoList, setTodoList] = useState<Todo[]>([]);
   useEffect(() => {
     getTodos().then((data) => setTodoList(data));
   }, []);
 
-  return (
-    <>
-      <TodoList todoList={[]} />
-    </>
-  );
+  return <TodoList todoList={todoList} />;
 }
 
 type TodoListProps = { todoList: Todo[] };
@@ -31,9 +27,9 @@ type TodoItemProps = Todo;
 function TodoItem({ id, title, completed }: TodoItemProps) {
   return (
     <div>
-      <div>{id}</div>
-      <div>{title}</div>
-      <div>{completed}</div>
+      <div>id: {id}</div>
+      <div>title: {title}</div>
+      <div>completed: {`${completed}`}</div>
     </div>
   );
 }
