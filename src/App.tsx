@@ -42,20 +42,23 @@ function App() {
 
   return (
     <>
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onDeleteClick={handleDeleteTodo} />
       <input type="text" value={title} onChange={handleTitleChange} />
       <button onClick={handleAddTodo}>등록</button>
     </>
   );
 }
 
-type TodoListProps = { todoList: Todo[] };
+type TodoListProps = {
+  todoList: Todo[];
+  onDeleteClick: (id: Todo["id"]) => void;
+};
 
-function TodoList({ todoList }: TodoListProps) {
+function TodoList({ todoList, onDeleteClick }: TodoListProps) {
   return (
     <div>
       {todoList.map((todo) => (
-        <TodoItem key={todo.id} {...todo} />
+        <TodoItem key={todo.id} {...todo} onDeleteClick={onDeleteClick} />
       ))}
     </div>
   );
