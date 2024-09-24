@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getTodos, type Todo } from "./test.ts";
+import { getTodos, type Todo } from "./test";
 
 type ToggleTodo = Omit<Todo, "title">;
 
@@ -31,6 +31,7 @@ function App() {
       method: "POST",
       body: JSON.stringify(newTodo),
     });
+
     setTodoList((prev) => [...prev, newTodo]);
     setTitle("");
   };
@@ -39,6 +40,7 @@ function App() {
     await fetch(`http://localhost:4000/todos/${id}`, {
       method: "DELETE",
     });
+
     setTodoList((prev) => prev.filter((todo) => todo.id !== id));
   };
 
@@ -81,7 +83,6 @@ type TodoListProps = {
   onDeleteClick: (id: Todo["id"]) => void;
   onToggleClick: (toggleTodo: ToggleTodo) => void;
 };
-
 function TodoList({ todoList, onDeleteClick, onToggleClick }: TodoListProps) {
   return (
     <div>
@@ -111,7 +112,7 @@ function TodoItem({
   return (
     <>
       <div>
-        <div>id: {id}</div>
+        <div>id: {id}.</div>
         <div
           onClick={() =>
             onToggleClick({
