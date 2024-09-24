@@ -9,7 +9,9 @@ function App() {
   );
 }
 
-function TodoList({ todoList }: { todoList: Todo[] }) {
+type TodoListProps = { todoList: Todo[] };
+
+function TodoList({ todoList }: TodoListProps) {
   return (
     <>
       {todoList.map((todo) => {
@@ -19,7 +21,8 @@ function TodoList({ todoList }: { todoList: Todo[] }) {
   );
 }
 
-function TodoItem({ id, title, completed }: Todo) {
+type TodoItemProps = Todo;
+function TodoItem({ id, title, completed }: TodoItemProps) {
   return (
     <div>
       <div>{id}</div>
