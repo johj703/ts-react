@@ -46,7 +46,7 @@ function App() {
     await fetch(`http://localhost:4000/todos/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
-        completed,
+        completed: !completed,
       }),
     });
 
