@@ -46,11 +46,11 @@ type TodoListProps = { todoList: Todo[] };
 
 function TodoList({ todoList }: TodoListProps) {
   return (
-    <>
-      {todoList.map((todo) => {
-        <TodoItem key={todo.id} {...todo} />;
-      })}
-    </>
+    <div>
+      {todoList.map((todo) => (
+        <TodoItem key={todo.id} {...todo} />
+      ))}
+    </div>
   );
 }
 
