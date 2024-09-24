@@ -15,6 +15,10 @@ function App() {
   };
 
   const handleAddTodo = async () => {
+    if (title === "") {
+      return;
+    }
+
     const newTodo: Todo = {
       id: crypto.randomUUID(),
       title,
