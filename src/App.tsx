@@ -7,7 +7,10 @@ type ToggleTodo = Omit<Todo, "title">;
 function App() {
   const [todoList, setTodoList] = useState<Todo[]>([]);
   useEffect(() => {
-    getTodos().then((data) => setTodoList(data.data));
+    getTodos().then((data) => {
+      console.log(data);
+      setTodoList(data.data);
+    });
   }, []);
 
   const [title, setTitle] = useState("");
@@ -32,7 +35,10 @@ function App() {
       body: JSON.stringify(newTodo),
     });
 
-    setTodoList((prev) => [...prev, newTodo]);
+    setTodoList((prev) => {
+      console.log(prev);
+      [...prev, newTodo];
+    });
     setTitle("");
   };
 
